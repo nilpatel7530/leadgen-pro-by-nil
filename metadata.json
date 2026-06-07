@@ -1,0 +1,6 @@
+{
+  "name": "LeadGen Pro Architect",
+  "description": "A high-performance lead discovery and enrichment platform designed for digital service agencies to find, score, and export B2B leads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
