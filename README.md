@@ -34,6 +34,28 @@ This React & TypeScript application leverages the **Google Gen AI SDK** and **Ge
 
 ---
 
+## 🔍 Data Gathering & Enrichment Pipeline
+
+LeadGen Pro Architect operates using a dual-stage structured processing architecture powered by the Google Gemini API:
+
+### 1. Structured Lead Discovery (Stage 1)
+* **User Input**: Location (City) and Industry (Business Type) are provided along with search constraints (e.g., target offline cash-flow businesses lacking websites or social channels).
+* **LLM Extraction & Discovery**: The system queries the `gemini-3.5-flash` model. By employing strict JSON schema parameters, the model serves as an intelligent web crawling agent and local business indexer. It generates candidate business names, categories, local directory links, and initial contact numbers representative of the target geography.
+
+### 2. Digital Auditing & Enrichment (Stage 2)
+Once candidate leads are discovered, they are individually passed through the enrichment queue:
+* **Footprint Reconstruction**: For each business entity, the engine submits a diagnostic query to Gemini requesting a detailed audit of the business's probable digital stack, operating hours, physical address parameters, social links, and B2B contact channels.
+* **Tech Stack Analysis**: The platform parses the estimated stack (identifying legacy setups like WordPress/Bootstrap, modern custom builds, or lack of any active hosting) to highlight technical vulnerabilities.
+* **Fit Scoring Heuristics**: The results are calculated into a targetability score using our points-based evaluation model, making it clear which leads present the highest development value.
+
+### 3. Geographic Grid Sub-sampling (Architecture Blueprint)
+To bypass artificial query bounds and API density limitations during scaling, the platform outlines a **Geographic Sub-sampling Grid** strategy:
+* The target metropolitan area is mapped onto a bounding box.
+* If a quadrant yields a result density exceeding the maximum threshold, the quadrant is recursively divided into four sub-quadrants (Quadtree style).
+* Gathering concludes when the entire sub-grid yields a comprehensive localized dataset, ensuring complete, hyper-local directory coverage.
+
+---
+
 ## 🛠️ Technology Stack
 
 * **Frontend Framework**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
